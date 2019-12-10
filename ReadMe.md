@@ -3,9 +3,7 @@
 ## Description
 
 This project was done as homework for Software Engineering course in hse university.
-The task was to implement binary tree and it's methods. The diagram of classes you can see below.
-
-![Diagram of classes](https://ibb.co/CJRtK8b)
+The task was to implement binary tree and it's methods. The diagram of classes you can see in repository.
 
 ## Tools
 

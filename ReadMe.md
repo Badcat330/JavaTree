@@ -5,7 +5,7 @@
 This project was done as homework for Software Engineering course in hse university.
 The task was to implement binary tree and it's methods. The diagram of classes you can see below.
 
-![Diagram of classes](/Users/alexglushko/Documents/Program/Java/IdeaProjects/Tree/DiagramOfClasses.jpg)
+![Diagram of classes](https://ibb.co/CJRtK8b)
 
 ## Tools
 

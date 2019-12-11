@@ -75,12 +75,12 @@ class MutableNodeTest{
         Collection<Node<Integer>> output = parentNode.getChildren();
         int i = 0;
         for(Node<Integer> out : output){
+            assertEquals(out, children.get(i));
             assertEquals(out.getValue(), children.get(i).getValue());
             i++;
         }
     }
 
-    //ToDo: Change remove
     @Test
     void removeChild1(){
         MutableNode<Integer> parentNode = new MutableNode<>();

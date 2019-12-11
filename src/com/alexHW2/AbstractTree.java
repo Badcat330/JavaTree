@@ -4,11 +4,19 @@ import java.util.Comparator;
 import java.util.function.BinaryOperator;
 
 public abstract class AbstractTree<T extends Number>{
-    private Node<T> root;
-    private BinaryOperator<T> adder;
-    private T sum;
-    private Comparator<T> comparator;
-    private T zero;
+    protected Node<T> root;
+    protected BinaryOperator<T> adder;
+    protected T sum;
+    protected Comparator<T> comparator;
+    protected T zero;
+
+    public AbstractTree(Node<T> root, BinaryOperator<T> adder, Comparator<T> comparator, T zero){
+        this.root = root;
+        this.adder = adder;
+        this.sum = zero;
+        this.comparator = comparator;
+        this.zero = zero;
+    }
 
     public Node<T> getRoot(){
         return root;
@@ -43,7 +51,7 @@ public abstract class AbstractTree<T extends Number>{
             for(Node<T> tmp : node.getChildren()){
                 UpdateSum(tmp);
             }
-            adder.apply(sum, node.getValue());
+            sum = adder.apply(sum, node.getValue());
         }
     }
 

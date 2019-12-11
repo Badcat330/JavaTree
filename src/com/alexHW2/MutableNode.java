@@ -1,6 +1,7 @@
 package com.alexHW2;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Vector;
 
 public class MutableNode<T extends Number> implements Node<T>{
@@ -15,9 +16,27 @@ public class MutableNode<T extends Number> implements Node<T>{
         children = new Vector<>();
     }
 
+    public MutableNode(T value){
+        this.value = value;
+        parent = null;
+        children = new Vector<>();
+    }
+
+    public MutableNode(T value, MutableNode<T> parent){
+        this.value = value;
+        this.parent = parent;
+        children = new Vector<>();
+    }
+
+    public MutableNode(T value, Collection<Node<T>> children){
+        this.value = value;
+        this.children = Objects.requireNonNullElseGet(children, Vector::new);
+        parent = null;
+    }
+
     public MutableNode(T value, MutableNode<T> parent, Collection<Node<T>> children){
         this.value = value;
-        this.children = children;
+        this.children = Objects.requireNonNullElseGet(children, Vector::new);
         this.parent = parent;
     }
 

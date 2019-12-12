@@ -40,9 +40,7 @@ public class MutableNode<T extends Number> implements Node<T>{
         this.parent = parent;
     }
 
-    public void setValue(T value){
-        this.value = value;
-    }
+    public void setValue(T value){ this.value = value; }
 
     public void setParent(MutableNode<T> parent){
         this.parent = parent;

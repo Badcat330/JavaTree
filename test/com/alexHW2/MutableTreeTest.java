@@ -10,7 +10,7 @@ import java.util.function.BinaryOperator;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MutableTreeTest{
-    final int NumberOfAdds = 5;
+    final int NumberOfAdds = 3;
     final Random rnd = new Random();
 
     @Test
@@ -69,13 +69,54 @@ class MutableTreeTest{
         assertEquals(tree.getSize(),  NumberOfAdds * 4 + - 3);
     }
 
-    @Test
-    void maximize(){
-        //ToDo: Implement test
+    private int generatRandomInt(Integer sum){
+        int buf = rnd.nextInt();
+        if(buf > 0)
+            sum = new Integer(buf + sum);
+        return  buf;
     }
 
     @Test
-    void testMaximize(){
-        //ToDo: Implement test
+    void maximize(){
+        int sum = 5;
+        MutableNode<Integer> parent = new MutableNode<>(5);
+        MutableTree<Integer> tree = new MutableTree<>(parent, Integer::sum, Integer::compareTo, 0);
+        Vector<MutableNode<Integer>> children = new Vector<>();
+        for(int i =0; i < NumberOfAdds; i++){
+            children.add(new MutableNode<>(i, parent));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            sum += i;
+        }
+        parent.setChildren(children);
+        assertNotEquals(tree.getSum(), sum);
+        tree.maximize();
+        assertEquals(tree.getSum(), sum);
     }
+
+    @Test
+    void maximize2(){
+        int sum = 5;
+        MutableNode<Integer> parent = new MutableNode<>(5);
+        MutableTree<Integer> tree = new MutableTree<>(parent, Integer::sum, Integer::compareTo, 0);
+        Vector<MutableNode<Integer>> children = new Vector<>();
+        for(int i =0; i < NumberOfAdds; i++){
+            if(i == NumberOfAdds - 1){
+                sum -= i;
+                children.add(new MutableNode<>(-i, parent));
+            }
+            else
+                children.add(new MutableNode<>(i, parent));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            children.get(i).addChild(new MutableNode<>(-i, children.get(i)));
+            sum += i;
+        }
+        parent.setChildren(children);
+        assertNotEquals(tree.getSum(), sum);
+        tree.maximize();
+        assertEquals(tree.getSum(), sum);
+    }
+
 }

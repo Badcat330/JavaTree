@@ -62,15 +62,4 @@ class ImmutableTreeTest{
         tree = (ImmutableTree<Integer>) tree.removeSubtree(children.get(0));
         assertEquals(tree.getSize(), NumberOfAdds * 4 + - 3);
     }
-
-    @Test
-    void maximize(){
-        //ToDo: Implement test
-    }
-
-    @Test
-    void testMaximize(){
-        //ToDo: Implement test
-    }
-
 }

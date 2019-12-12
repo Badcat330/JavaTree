@@ -13,7 +13,9 @@ public class ImmutableTree<T extends Number> extends AbstractTree<T>{
     @Override
     public AbstractTree<T> removeSubtree(Node<T> rootSubTree){
         if(rootSubTree == root)
-            return null;
+            throw new IllegalArgumentException("You can't delet root");
+        if(rootSubTree == null)
+            throw new NullPointerException();
         return new ImmutableTree<T>(removeCheck(rootSubTree, (ImmutableNode<T>) root), adder, comparator, zero);
     }
 
@@ -32,14 +34,21 @@ public class ImmutableTree<T extends Number> extends AbstractTree<T>{
     }
 
     @Override
-    public AbstractTree<T> maximize(int k){
-        //Todo: implement method
-        return null;
+    public AbstractTree<T> maximize(){
+        return maximize((ImmutableNode<T>) root, this);
     }
 
-    @Override
-    public AbstractTree<T> maximize(){
-        //Todo: implement method
-        return null;
+    private AbstractTree<T> maximize(ImmutableNode<T> node, AbstractTree<T> tree){
+        if(node.getChildren().isEmpty() && comparator.compare(node.getValue(), zero) < 0){
+            return removeSubtree(node);
+        } else{
+            for(Node<T> tmp : node.getChildren()){
+                tree = maximize((ImmutableNode<T>) tmp, tree);
+            }
+            ImmutableTree<T> subTree = new ImmutableTree<>(node, adder, comparator, zero);
+            if(comparator.compare(subTree.getSum(), zero) < 0)
+                return removeSubtree(node);
+        }
+        return tree;
     }
 }

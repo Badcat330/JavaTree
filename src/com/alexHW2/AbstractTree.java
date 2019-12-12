@@ -56,7 +56,6 @@ public abstract class AbstractTree<T extends Number>{
     }
 
     public abstract AbstractTree<T> removeSubtree(Node<T> rootSubTree);
-    public abstract AbstractTree<T> maximize(int k);
     public abstract AbstractTree<T> maximize();
 
 }

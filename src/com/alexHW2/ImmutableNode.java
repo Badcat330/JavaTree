@@ -14,6 +14,8 @@ public class ImmutableNode<T extends Number> implements Node<T>{
         this.parent = parent;
         this.children = Objects.requireNonNullElseGet(children, Vector::new);
         for(Node<T> child : this.children){
+            if(child == null)
+                throw new NullPointerException();
             child = adopt((ImmutableNode<T>) child);
         }
 
@@ -24,6 +26,8 @@ public class ImmutableNode<T extends Number> implements Node<T>{
         parent = null;
         this.children = Objects.requireNonNullElseGet(children, Vector::new);
         for(Node<T> child : this.children){
+            if(child == null)
+                throw new NullPointerException();
             child = adopt((ImmutableNode<T>) child);
         }
     }
